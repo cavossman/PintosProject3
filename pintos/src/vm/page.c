@@ -145,10 +145,13 @@ page_out (struct page *p)
      dirty bit, to prevent a race with the process dirtying the
      page. */
 
-/* add code here */
+  /* START COLLIN PROJ3 */
+  pagedir_clear_page(p->thread->pagedir, p->addr);  // Marks page not present - see userprog/pagedir.c
 
   /* Has the frame been modified? */
-
+  dirty = pagedir_is_dirty(p->thread->pagedir, p->addr); // true if the PTE for virtual page VPAGE in PD is dirty 
+ /* END COLLIN PROJ3 */
+  
 /* add code here */
 
   /* Write frame contents to disk if necessary. */
